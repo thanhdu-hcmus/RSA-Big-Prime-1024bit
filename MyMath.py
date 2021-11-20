@@ -31,6 +31,11 @@ def GCD_extended(a, b):
 		v1, v2, v3 = t1, t2, t3
 	return u1, u2, u3
 
+def CRT(n1,r1,n2,r2):
+	x, y, z = GCD_extended(n1, n2)
+	m = n1 * n2
+	n = r2 * x * n1 + r1 * y * n2
+	return (n % m + m) % m
 
 # a = pow(201,1024)
 # b = pow(301,1024)
