@@ -1,7 +1,7 @@
 import MyMath
 
 def getPQ(file):
-	fi = open(file,"r")
+	fi = open(file,"r", encoding='utf-8')
 	p = int(fi.readline())
 	q = int(fi.readline())
 	return p, q
@@ -26,11 +26,9 @@ def main():
 	phi = (p-1)*(q-1)
 	e = getE(phi)
 	d = getD(e, phi)
-	fo = open("Data/PublicKey.txt","w")
+	fo = open("Data/PublicKey.txt","w", encoding='utf-8')
 	fo.write(str(n)+'\n'+str(e))
 	fo.close()
-	fo = open("Data/PrivateKey.txt","w")
+	fo = open("Data/PrivateKey.txt","w", encoding='utf-8')
 	fo.write(str(n)+'\n'+str(d))
 	fo.close()
-
-main()

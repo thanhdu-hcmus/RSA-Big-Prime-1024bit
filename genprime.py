@@ -1,11 +1,11 @@
 import random
 import PrimeTest
 
-def Random (b):
-	a = random.getrandbits(b)
-	a = a | (1 << (b-1))
+def Random (bits):
+	a = random.getrandbits(bits)
+	a = a | (1 << (bits-1))
 	a = a | 1
-	return a;
+	return a
 
 def getPrime(b):
 	p = Random(b)
@@ -24,17 +24,12 @@ def getPrime(b):
 			p+= 2
 			continue
 		break
-	print(d1)
-	print(d2)
-	print(d3)
 	return p
 
-def main(bits):
+def prime_generator(bits):
 	p = getPrime(bits)
 	q = getPrime(bits)
-	fo = open("Data/BigPrime.txt","w")
+	fo = open("Data/BigPrime.txt","w", encoding='utf-8')
 	fo.write(str(p)+'\n')
 	fo.write(str(q))
 	fo.close()
-
-main(1024)

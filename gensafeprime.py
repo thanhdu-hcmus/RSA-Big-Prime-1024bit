@@ -1,28 +1,28 @@
 import genprime
 import PrimeTest
-
+from time import time
 def getSafePrime(n):
-	t = genprime.getPrime(n-1)
-	p = 2*t + 1
 	while True:
+		t = genprime.getPrime(n-1) #1023 bits
+		p = ( 2 * t ) + 1
 		if PrimeTest.Preprocessor(p) == False:
-			p+= 2
 			continue
 		if PrimeTest.Fermat(p,20) == False:
-			p+= 2
 			continue
 		if PrimeTest.Miller_Rabin(p,20) == False:
-			p+= 2
 			continue
 		break
 	return p
 
-def main(bits):
+def safe_prime_generator(bits):
+	start_time = time ()
+	print("====== Start Gen======")
 	p = getSafePrime(bits)
 	q = getSafePrime(bits)
-	fo = open("Data/BigPrime.txt","w")
+	fo = open("Data/BigPrime.txt","w", encoding='utf-8')
 	fo.write(str(p)+'\n')
 	fo.write(str(q))
 	fo.close()
-
-main(1024)
+	end_time = time ()
+	print("====== End Gen======")
+	print ("Generating: {}".format(end_time - start_time)) 
