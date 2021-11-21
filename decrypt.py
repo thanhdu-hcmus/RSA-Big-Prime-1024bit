@@ -4,14 +4,14 @@ import makekey
 import PrimeTest
 
 def getPrivateKey (file) : # file Privatekey
-	fi = open(file,"r")
+	fi = open(file,"r", encoding='utf-8')
 	n = int(fi.readline())
 	d = int(fi.readline())
 	fi.close()
 	return n, d
 
 def getCiphertext(file): # file Ciphertext
-	fi = open(file,"r")
+	fi = open(file,"r", encoding='utf-8')
 	C = fi.readline()
 	C = C.split(" ")
 	C = C[:-1]
@@ -27,7 +27,7 @@ def decryptFast(c,d,n):
 	return MyMath.CRT(p,c1,q,c2)
 
 def decode(n, d, C, base, fileOut): # file PlanintextDecode
-	fo = open(fileOut,"w")
+	fo = open(fileOut,"w", encoding='utf-8')
 	P = ""
 	for i in C:
 		# m = MyMath.powMod(MyBase.toInt(i,64),d,n)
@@ -44,10 +44,8 @@ def decode(n, d, C, base, fileOut): # file PlanintextDecode
 	fo.close()
 	return P
 
-def main():
+def Descrypt():
 	n, d= getPrivateKey("Data/PrivateKey.txt")
 	C= getCiphertext("Data/Ciphertext.txt")
 	C= decode(n, d, C, 4, "Data/PlaintextDecode.txt")
 	#print(C)
-
-main()

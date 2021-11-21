@@ -2,14 +2,14 @@ import MyMath
 import MyBase
 
 def getPublicKey (file):
-	fi = open(file,"r")
+	fi = open(file,"r", encoding='utf-8')
 	n = int(fi.readline())
 	e = int(fi.readline())
 	fi.close()
 	return n, e
 
 def getPlaintext (file):
-	fi = open(file,"r")
+	fi = open(file,"r", encoding='utf-8')
 	P = fi.read()
 	fi.close()
 	return P
@@ -35,7 +35,7 @@ def createBigInt(R, size_n):
 	return A
 
 def encode(n, e, P, file):
-	fo = open(file,"w")
+	fo = open(file,"w", encoding='utf-8')
 	C = ""
 	R = convertStringToInt(P, 4)
 	A = createBigInt(R, len(str(n)))
@@ -47,10 +47,8 @@ def encode(n, e, P, file):
 	fo.close()
 	return C
 
-def main():
+def Encrypt():
 	n, e = getPublicKey("Data/PublicKey.txt")
 	P = getPlaintext("Data/Plaintext.txt")
 	C = encode(n, e, P, "Data/Ciphertext.txt")
 	#print (C)
-
-main()

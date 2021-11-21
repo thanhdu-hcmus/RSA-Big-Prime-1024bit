@@ -3,7 +3,7 @@ import genprime
 import random
 
 def getPQ(file):
-	fi = open(file,"r")
+	fi = open(file,"r", encoding='utf-8')
 	p = int(fi.readline())
 	q = int(fi.readline())
 	return p, q
@@ -25,7 +25,7 @@ def getE(d, phi):
 		e+= phi
 	return e
 
-def main():
+def makeSafeKey():
 	p, q = getPQ("Data/BigPrime.txt")
 	n = p*q
 	phi = (p-1)*(q-1)
@@ -33,11 +33,9 @@ def main():
 	# d = getD(e, phi)
 	d = getD(phi, int(len(bin(p)))-2)
 	e = getE(d, phi)
-	fo = open("Data/PublicKey.txt","w")
+	fo = open("Data/PublicKey.txt","w", encoding='utf-8')
 	fo.write(str(n)+'\n'+str(e))
 	fo.close()
-	fo = open("Data/PrivateKey.txt","w")
+	fo = open("Data/PrivateKey.txt","w", encoding='utf-8')
 	fo.write(str(n)+'\n'+str(d))
 	fo.close()
-
-main()
