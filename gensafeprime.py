@@ -26,3 +26,7 @@ def safe_prime_generator(bits):
 	end_time = time ()
 	print("====== End Gen======")
 	print ("Generating: {}".format(end_time - start_time)) 
+
+
+if __name__ == "__main__":
+	getSafePrime(1024)
