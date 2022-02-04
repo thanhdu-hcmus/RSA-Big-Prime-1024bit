@@ -1,6 +1,6 @@
 import MyMath
 import MyBase
-import makekey
+import makesafekey
 import PrimeTest
 
 def getPrivateKey (file) : # file Privatekey
@@ -19,7 +19,7 @@ def getCiphertext(file): # file Ciphertext
 	return C
 
 def decryptFast(c,d,n):
-	p, q = makekey.getPQ("Data/BigPrime.txt")
+	p, q = makesafekey.getPQ("Data/BigPrime.txt")
 	d1 = d % (p-1)
 	d2 = d % (q-1)
 	c1 = MyMath.powMod(c, d1, p)
