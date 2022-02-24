@@ -7,7 +7,7 @@ def Random(bits):
 	a = a | 1
 	return a;
 
-def prime_generator(bits):
+def getPrime(bits):
 	p = Random(bits)
 	d1 = d2 = d3 = 0
 	while True:
@@ -24,3 +24,12 @@ def prime_generator(bits):
 			p+= 2
 			continue
 		break
+	return p
+
+def prime_generator(bits):
+	p = getPrime(bits)
+	q = getPrime(bits)
+	fo = open("Data/BigPrime.txt","w")
+	fo.write(str(p)+'\n')
+	fo.write(str(q))
+	fo.close()
